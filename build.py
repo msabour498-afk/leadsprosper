@@ -6,11 +6,22 @@ Edit the SITE settings below (phone, address, form, analytics), run the
 script again, and every page updates. Output files are written next to this
 script, at the top level of the repo.
 """
+import hashlib
 import html
 import json
 import os
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+
+def version(name):
+    """Short content hash so browsers fetch the new file after every change."""
+    with open(os.path.join(ROOT, name), "rb") as f:
+        return hashlib.md5(f.read()).hexdigest()[:8]
+
+
+CSS_V = version("styles.css")
+JS_V = version("site.js")
 
 # ---------------------------------------------------------------- settings
 SITE = {
@@ -249,7 +260,7 @@ def page(slug, title, description, body, schemas=(), noindex=False, current=None
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v={CSS_V}">
 <script>window.dataLayer=window.dataLayer||[];window.LP_CONFIG={json.dumps(cfg)};</script>
 {analytics_head()}{schema_tags}</head>
 <body>
@@ -259,7 +270,7 @@ def page(slug, title, description, body, schemas=(), noindex=False, current=None
 </main>
 {footer()}
 {floating_button()}
-<script src="/site.js" defer></script>
+<script src="/site.js?v={JS_V}" defer></script>
 </body>
 </html>
 """

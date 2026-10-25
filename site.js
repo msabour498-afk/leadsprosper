@@ -160,15 +160,37 @@
 
   function sendHubspot(p, formId) {
     var hs = CFG.form;
-    var host = hs.hubspotRegion === "eu1" ? "api-eu1.hsforms.com" : "api.hsforms.com";
+    var region = hs.hubspotRegion || "na1";
+    // Global address first, then the account's regional address. New forms in
+    // some regions (e.g. na2) are only recognized at the regional address.
+    var hosts = ["api.hsforms.com"];
+    if (region !== "na1") hosts.push("api-" + region + ".hsforms.com");
     var fields = ["firstname", "lastname", "email", "phone", "message"].filter(function (k) { return p[k]; })
       .map(function (k) { return { objectTypeId: "0-1", name: k, value: p[k] }; });
     var body = { fields: fields, context: { pageUri: location.href, pageName: document.title } };
     var hutk = getCookie("hubspotutk");
     if (hutk) body.context.hutk = hutk;
-    return fetch("https://" + host + "/submissions/v3/integration/submit/" + hs.hubspotPortalId + "/" + hs.hubspotFormId, {
-      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body)
-    }).then(function (r) { if (!r.ok) throw new Error("HubSpot " + r.status); });
+    var json = JSON.stringify(body);
+    var path = "/submissions/v3/integration/submit/" + hs.hubspotPortalId + "/" + hs.hubspotFormId;
+
+    function attempt(i) {
+      return fetch("https://" + hosts[i] + path, {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: json
+      }).then(function (r) {
+        if (r.ok) return;
+        return r.text().then(function (t) {
+          console.warn("HubSpot rejected the submission at " + hosts[i] + " (" + r.status + "): " + t);
+          // 404 = form not found at this address; try the next one.
+          if (r.status === 404 && i + 1 < hosts.length) return attempt(i + 1);
+          throw new Error("HubSpot " + r.status);
+        });
+      }, function (err) {
+        console.warn("Couldn't reach " + hosts[i] + ": " + err);
+        if (i + 1 < hosts.length) return attempt(i + 1);
+        throw err;
+      });
+    }
+    return attempt(0);
   }
   function sendFormspree(p, formId) {
     var data = { first_name: p.firstname, last_name: p.lastname, email: p.email, phone: p.phone, message: p.message, form: formId, page: location.pathname };
