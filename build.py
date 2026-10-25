@@ -531,39 +531,321 @@ PAGES["chatgpt-ads.html"] = service_page(
 )
 
 # Industries -----------------------------------------------------------------
-B2B_LIST = [
-    ("Software and SaaS", "Demo requests and trial sign-ups from the right size of company, not students and job seekers.",
-     "B2B software, apps, IT platforms"),
-    ("Professional services", "High-value consultations, where one new client covers months of ad spend.",
-     "Law firms serving businesses, accounting, consulting, engineering"),
-    ("Manufacturing and industrial", "Quote requests from buyers and engineers searching for specific parts and capabilities.",
-     "Contract manufacturers, machine shops, suppliers, distributors"),
-    ("IT and managed services", "Local businesses looking for support, security, and cloud help.",
-     "MSPs, cybersecurity, IT consulting"),
-    ("Commercial services", "Facility managers and owners requesting bids.",
-     "Commercial cleaning, construction, HVAC, security, staffing"),
+# One entry per industry page. Edit the text here and rebuild.
+# No stats, results, or client names unless they're real and approved.
+INDUSTRY_PAGES = [
+ dict(slug="saas", group="b2b", name="Software and SaaS", h1="SaaS lead generation",
+  blurb="Demo requests and trial sign-ups from the right size of company, not students and job seekers.",
+  examples="B2B software, apps, IT platforms",
+  title="SaaS Lead Generation Agency in Chicago | Google & Facebook Ads | Leads Prosper",
+  desc="Demo requests and trial sign-ups for SaaS and software companies in Chicago, NYC, and other metros from Google Ads, Facebook Ads, and ChatGPT Ads. Free audit.",
+  intro="Software buyers compare options before they talk to sales. We put you in front of them while they compare, and judge the work by qualified demos and pipeline, not sign-ups that never convert.",
+  channels=[("Google Ads", "Search campaigns on category, problem, and 'alternative to' terms, with your customer list excluded. Closed deals flow back from your CRM so bidding favors real pipeline."),
+            ("Facebook Ads", "Retargeting site visitors and trial users, and lookalike audiences built from your best customers."),
+            ("ChatGPT Ads", "Buyers ask ChatGPT for software recommendations. A small, tracked test shows whether it brings demos at a cost you'd accept.")],
+  audit=["Whether demo and trial conversions are tracked separately",
+         "Search terms bringing in students, job seekers, and free-tool hunters",
+         "Competitor campaigns and how their ads are worded",
+         "Whether CRM deal stages flow back to Google and Meta",
+         "Landing pages: one clear ask, a short form, proof of fit"],
+  fit=["You sell software to businesses through demos or trials",
+       "You track deal stages in a CRM like HubSpot or Salesforce",
+       "Plenty of sign-ups, but few become paying customers"],
+  faqs=[("Should we bid on competitor names?",
+         "It can work for 'alternative to' searches. Competitor names can be used as keywords, but Google may restrict a competitor's trademark in your ad text if they complain, so we keep it out of the ads."),
+        ("Do you run LinkedIn Ads?",
+         "No. We run Google Ads, Facebook Ads, and ChatGPT Ads. If the audit shows LinkedIn would suit you better, we'll say so.")]),
+
+ dict(slug="professional-services", group="b2b", name="Professional services", h1="Professional services leads",
+  blurb="High-value consultations, where one new client covers months of ad spend.",
+  examples="Law firms serving businesses, accounting, consulting, engineering",
+  title="Professional Services Lead Generation in Chicago | Law, Accounting, Consulting | Leads Prosper",
+  desc="Consultation requests for law, accounting, consulting, and engineering firms in Chicago, NYC, and other metros from Google Ads and Facebook Ads. Free audit.",
+  intro="Firms that sell expertise win clients on trust. We bring in consultation requests from businesses that need your service now, and screen out inquiries that waste partner time.",
+  channels=[("Google Ads", "Search campaigns on service and city terms, like 'business attorney chicago' or 'outsourced accounting nyc', with call tracking so phone inquiries count."),
+            ("Facebook Ads", "Retargeting visitors with guides, webinars, or case studies, and reaching owners and executives in your metro."),
+            ("ChatGPT Ads", "People ask ChatGPT who to hire. We test whether ads there bring consultations worth the cost.")],
+  audit=["Call and form tracking, including calls straight from ads",
+         "Search terms from job seekers and people wanting free advice",
+         "Location targeting matched to where you take clients",
+         "Ad copy checked against your profession's advertising rules",
+         "How fast new inquiries get a reply"],
+  fit=["You sell to businesses: law, accounting, consulting, engineering, architecture",
+       "One new client is worth thousands",
+       "Referrals are slowing and you want a second source"],
+  faqs=[("Are there advertising rules for law and accounting firms?",
+         "Yes. Lawyers follow their state's rules of professional conduct, and CPAs follow state board and AICPA rules. We keep ads factual, and you approve all copy before it runs."),
+        ("How do you screen out bad leads?",
+         "Negative keywords, a form question about company size or need, and sending lead quality back to the platforms so they learn what a good client looks like.")]),
+
+ dict(slug="manufacturing", group="b2b", name="Manufacturing and industrial", h1="Manufacturing lead generation",
+  blurb="Quote requests from buyers and engineers searching for specific parts and capabilities.",
+  examples="Contract manufacturers, machine shops, suppliers, distributors",
+  title="Manufacturing Lead Generation in Chicago | Industrial Google Ads | Leads Prosper",
+  desc="RFQs and quote requests for manufacturers, machine shops, and industrial suppliers in Chicago, the Midwest, and nationwide from Google Ads and Facebook Ads.",
+  intro="Industrial buyers and engineers search for exact capabilities, materials, and tolerances. We match ads to those searches and track the RFQs they bring in.",
+  channels=[("Google Ads", "Search campaigns on capability and part terms, like 'cnc machining aluminum' or 'contract injection molding', across the regions you ship to. Searches are fewer but specific, so precise keywords matter."),
+            ("Facebook Ads", "Retargeting engineers and buyers who viewed your capability pages, so you stay on the shortlist through long buying cycles."),
+            ("ChatGPT Ads", "Engineers use ChatGPT to research suppliers. We can test whether ads there bring RFQs.")],
+  audit=["RFQ and drawing-upload forms tracked as conversions",
+         "Search terms from job seekers, students, and DIY buyers",
+         "Geographic targeting vs. where you can ship and support",
+         "Capability pages: are specs and certifications easy to find?",
+         "Phone and email inquiries counted, not just forms"],
+  fit=["You make or supply parts, materials, or equipment for other businesses",
+       "Buyers find you by capability, spec, or certification",
+       "Trade shows and reps bring most of your work and you want a steadier source"],
+  faqs=[("Our niche gets few searches. Is Google Ads worth it?",
+         "Often, because the few people searching are close to buying. The audit estimates search volume for your terms before you spend anything."),
+        ("Can certifications like ISO 9001 go in the ads?",
+         "Yes, if you hold them. Certifications and capabilities make strong ad and landing page content.")]),
+
+ dict(slug="it-services", group="b2b", name="IT and managed services", h1="IT services lead generation",
+  blurb="Local businesses looking for support, security, and cloud help.",
+  examples="MSPs, cybersecurity, IT consulting",
+  title="IT & Managed Services Lead Generation in Chicago | MSP Google Ads | Leads Prosper",
+  desc="Leads for MSPs, cybersecurity, and IT consulting firms in Chicago, NYC, and other metros from Google Ads, Facebook Ads, and ChatGPT Ads. Free account audit.",
+  intro="Businesses look for IT help when something breaks or when they outgrow their setup. We reach them at both moments, inside the area you can support on-site.",
+  channels=[("Google Ads", "Search campaigns on 'managed IT services', 'IT support', and 'cybersecurity' plus city terms, with call tracking for urgent requests."),
+            ("Facebook Ads", "Reaching owners and office managers in your service area with practical offers, like a security assessment."),
+            ("ChatGPT Ads", "Owners ask ChatGPT how to choose an IT provider. A tracked test shows whether ads there reach them.")],
+  audit=["Search terms from home users and people looking for IT jobs or certifications",
+         "Service-area targeting vs. where you can send technicians",
+         "Call tracking on urgent support searches",
+         "A clear offer: assessment, audit, or consultation",
+         "Lead quality fed back from your CRM or PSA"],
+  fit=["You sell managed IT, cybersecurity, cloud, or IT consulting to businesses",
+       "You serve a defined metro area",
+       "A new contract is worth months of ad spend"],
+  faqs=[("How do you avoid home-user calls?",
+         "Negative keywords like 'home', 'personal', and 'laptop repair', business-focused ad copy, and a form question about company size."),
+        ("Can ads target companies of a certain size?",
+         "Not directly on Google Search. We use keywords and copy that attract businesses, and on Meta we use job and interest targeting where it's available.")]),
+
+ dict(slug="commercial-services", group="b2b", name="Commercial services", h1="Commercial services leads",
+  blurb="Facility managers and owners requesting bids.",
+  examples="Commercial cleaning, construction, HVAC, security, staffing",
+  title="Commercial Services Lead Generation in Chicago | Cleaning, HVAC, Construction | Leads Prosper",
+  desc="Bid requests for commercial cleaning, construction, HVAC, security, and staffing companies in Chicago, NYC, and other metros from Google Ads and Facebook Ads.",
+  intro="Facility managers, property managers, and owners request bids when a contract ends or a problem comes up. We get your company onto that bid list.",
+  channels=[("Google Ads", "Search campaigns on 'commercial cleaning', 'office cleaning', 'commercial HVAC', and similar city terms, kept separate from residential searches."),
+            ("Facebook Ads", "Reaching property and facility managers, and retargeting visitors with a request-a-bid offer."),
+            ("ChatGPT Ads", "Managers ask ChatGPT for vendor shortlists. We can test whether ads there bring bid requests.")],
+  audit=["Residential searches leaking into commercial campaigns",
+         "Bid and quote forms tracked as conversions",
+         "Location targeting matched to where your crews work",
+         "A separate campaign for each service line",
+         "Calls from ads recorded and counted"],
+  fit=["You sell services to businesses, properties, or facilities",
+       "Contracts are recurring or high-value",
+       "You want bid requests, not one-off residential jobs"],
+  faqs=[("We do residential and commercial. Can you keep them apart?",
+         "Yes. Separate campaigns, keywords, and landing pages keep budgets and reporting apart."),
+        ("How do you reach facility managers?",
+         "Through the searches they make when they need a vendor, plus Meta targeting by job-related interests where available.")]),
+
+ dict(slug="home-services", group="b2c", name="Home services", h1="Home services lead generation",
+  blurb="Calls from homeowners in your service area, often the same day.",
+  examples="HVAC, plumbing, roofing, remodeling, landscaping, pest control",
+  title="Home Services Lead Generation in Chicago | HVAC, Plumbing, Roofing Ads | Leads Prosper",
+  desc="Calls and booked jobs for HVAC, plumbing, roofing, remodeling, and other home service companies in Chicago, NYC, and other metros. Free Google Ads audit.",
+  intro="Homeowners with a leak or a broken AC call the first business that looks trustworthy. We get your phone ringing from people in your service area, and track every call back to its ad.",
+  channels=[("Google Ads", "Search campaigns on service and city terms, plus Local Services Ads if your trade and area qualify. Emergency hours get their own ads and bids."),
+            ("Facebook Ads", "Seasonal offers, like AC tune-ups or gutter cleaning, shown to homeowners within your service radius."),
+            ("ChatGPT Ads", "Homeowners ask ChatGPT who to call. A small test shows whether it brings booked jobs.")],
+  audit=["Call tracking: which ads and keywords bring calls",
+         "Service-area settings that show ads where you don't work",
+         "Search terms like 'DIY', 'jobs', and 'parts'",
+         "Ad schedule vs. when someone answers the phone",
+         "Your Google Business Profile and reviews linked to your ads"],
+  fit=["HVAC, plumbing, electrical, roofing, remodeling, landscaping, pest control, and similar trades",
+       "You or a call center can answer calls quickly",
+       "You want booked jobs, not leads shared with competitors"],
+  faqs=[("What are Local Services Ads?",
+         "Google ads that appear at the top of results with a Google screening badge and charge per lead instead of per click. Availability depends on your trade and area, and Google runs background and license checks."),
+        ("Are these leads shared with other companies?",
+         "No. People contact your business directly from your ads.")]),
+
+ dict(slug="legal", group="b2c", name="Legal", h1="Law firm lead generation",
+  blurb="Consultation requests for practice areas with high case values.",
+  examples="Personal injury, family law, criminal defense, immigration, estate planning",
+  title="Law Firm Lead Generation in Chicago | Lawyer Google Ads | Leads Prosper",
+  desc="Consultation requests for personal injury, family law, criminal defense, immigration, and estate planning firms in Chicago, NYC, and other metros. Free audit.",
+  intro="People search for a lawyer after something has gone wrong, and they often call the first firm that seems right. We bring in consultation requests for the practice areas you want more of.",
+  channels=[("Google Ads", "Search campaigns by practice area and city, with call tracking and ads timed to your intake hours. Legal searches are some of the most competitive, so we put spend on the cases you want."),
+            ("Facebook Ads", "Awareness and retargeting for practice areas where people research first, like estate planning and family law."),
+            ("ChatGPT Ads", "People ask ChatGPT legal questions before they hire. A tracked test shows whether ads there bring consultations.")],
+  audit=["Call tracking and intake records matched to ads",
+         "Search terms from people wanting free advice, forms, or jobs",
+         "Ad copy checked against your state's lawyer advertising rules",
+         "Location targeting vs. where you're licensed",
+         "How fast new inquiries get a response"],
+  fit=["Personal injury, family law, criminal defense, immigration, estate planning, and other consumer practice areas",
+       "You have intake staff or an answering service",
+       "You can track which inquiries become signed cases"],
+  faqs=[("Do ads have to follow bar rules?",
+         "Yes. Lawyer advertising is governed by each state's rules of professional conduct. We write factual ads, make no promises about outcomes, and you approve all copy."),
+        ("Can you target people who were in an accident?",
+         "Not by their circumstances. We target the searches they make, like 'car accident lawyer chicago', in the areas you serve.")]),
+
+ dict(slug="health-wellness", group="b2c", name="Health and wellness", h1="Healthcare practice leads",
+  blurb="Booked appointments from patients nearby.",
+  examples="Dental, med spas, chiropractic, physical therapy, clinics",
+  title="Healthcare & Med Spa Lead Generation in Chicago | Dental, Chiropractic Ads | Leads Prosper",
+  desc="New-patient appointments for dental, med spa, chiropractic, physical therapy, and clinic practices in Chicago, NYC, and other metros. Free account audit.",
+  intro="Patients choose a provider who is close, available, and trustworthy. We bring in booked appointments from people nearby, with tracking set up so no health details reach the ad platforms.",
+  channels=[("Google Ads", "Search campaigns on treatment and city terms, written within Google's healthcare ad policies."),
+            ("Facebook Ads", "New-patient offers shown to people near your practice. Meta limits health-based targeting, so ads reach people by location and broad interests."),
+            ("ChatGPT Ads", "Patients ask ChatGPT about treatments and providers. We can test whether ads there bring appointments.")],
+  audit=["Appointment and call tracking",
+         "Pixel and tag setup: no health information sent to Google or Meta",
+         "Ads at risk under Google's or Meta's health policies",
+         "Location targeting vs. how far patients will travel",
+         "Online booking: how many steps it takes"],
+  fit=["Dental practices, med spas, chiropractic, physical therapy, and private clinics",
+       "You want new patients for specific services",
+       "You can offer new appointments within days"],
+  faqs=[("Is ad tracking safe for healthcare sites?",
+         "It can be, when set up carefully. We avoid sending health details to ad platforms and track the appointment request itself. Check HIPAA questions with your compliance advisor."),
+        ("Can you advertise prescription treatments?",
+         "Google restricts ads for prescription drugs, including some cosmetic injectables. We build ads around the service and provider instead.")]),
+
+ dict(slug="real-estate-mortgage", group="b2c", name="Real estate and mortgage", h1="Real estate and mortgage leads",
+  blurb="Buyer, seller, and refinance leads, set up within Meta's housing and financial ad rules.",
+  examples="Agents, brokerages, lenders, property managers",
+  title="Real Estate & Mortgage Lead Generation in Chicago | Google & Facebook Ads | Leads Prosper",
+  desc="Buyer, seller, and refinance leads for agents, brokerages, and lenders in Chicago, NYC, and other metros, set up within housing and lending ad rules.",
+  intro="Buyers, sellers, and borrowers start online, often months before they act. We bring in leads, keep you in front of them until they're ready, and set ads up within the housing and lending ad rules.",
+  channels=[("Google Ads", "Search campaigns on 'homes for sale', 'sell my house', and refinance terms by city. Google limits targeting for housing and credit ads, so keywords and locations do the work."),
+            ("Facebook Ads", "Listing, home-value, and pre-approval offers, run under Meta's housing or financial products Special Ad Categories, which restrict targeting by age, gender, and ZIP code."),
+            ("ChatGPT Ads", "People ask ChatGPT about buying, selling, and rates. A tracked test shows whether ads there bring leads.")],
+  audit=["Special Ad Category setup on Meta",
+         "Fair-housing language in ads and landing pages",
+         "Lead forms that bring in fake or low-intent contacts",
+         "Follow-up speed and CRM routing",
+         "Location targeting vs. the markets you serve"],
+  fit=["Agents, brokerages, mortgage lenders and brokers, property managers",
+       "You have a CRM and a follow-up process for long-term leads",
+       "You want leads you own, not leads shared on portals"],
+  faqs=[("Why are targeting options limited?",
+         "US fair housing and lending laws apply to ads. Google and Meta restrict targeting by age, gender, ZIP code, and similar factors for housing and credit ads."),
+        ("How do you handle low-quality Facebook leads?",
+         "Higher-intent form questions, a confirmation step, and fast follow-up. We compare cost per qualified lead, not just cost per lead.")]),
+
+ dict(slug="automotive", group="b2c", name="Automotive", h1="Automotive lead generation",
+  blurb="Service appointments and sales inquiries from local drivers.",
+  examples="Dealers, repair shops, detailing, auto glass",
+  title="Automotive Lead Generation in Chicago | Dealer & Auto Repair Ads | Leads Prosper",
+  desc="Service appointments and sales inquiries for dealers, repair shops, collision, detailing, and auto glass in Chicago, NYC, and other metros. Free audit.",
+  intro="Drivers search when something breaks or when they're ready to buy. We bring in service appointments and sales inquiries from people within driving distance.",
+  channels=[("Google Ads", "Search campaigns on repair and service terms by city, and vehicle ads for dealers with an inventory feed."),
+            ("Facebook Ads", "Inventory and service offers shown to drivers nearby, and retargeting for people who browsed vehicles."),
+            ("ChatGPT Ads", "Shoppers ask ChatGPT for car and repair advice. A tracked test shows whether ads there bring visits.")],
+  audit=["Calls, forms, and booking requests tracked",
+         "Search terms for DIY, parts, and manuals",
+         "Inventory feed setup for dealers",
+         "Location targeting vs. how far customers will drive",
+         "Offers and pricing shown in ads"],
+  fit=["Dealers, independent repair, collision, detailing, auto glass, tire shops",
+       "You can book appointments quickly",
+       "You want to know which ads bring customers in"],
+  faqs=[("What are vehicle ads?",
+         "Google ads that show a car's photo, price, and mileage from your inventory feed. They're for dealers and need a Google Merchant Center account."),
+        ("Can you track walk-ins?",
+         "Partly. Calls, forms, and direction requests are tracked, and offer codes help connect walk-ins to ads.")]),
+
+ dict(slug="fitness", group="b2c", name="Fitness and local studios", h1="Fitness studio lead generation",
+  blurb="Trial sign-ups and first visits from people close enough to come regularly.",
+  examples="Gyms, yoga and pilates studios, martial arts, personal training",
+  title="Gym & Fitness Studio Lead Generation in Chicago | Facebook & Google Ads | Leads Prosper",
+  desc="Trial sign-ups for gyms, yoga and pilates studios, martial arts, and personal trainers in Chicago, NYC, and other metros from Facebook and Google Ads.",
+  intro="People join a gym or studio near home or work, usually after a trial. We bring in trial sign-ups from people close enough to keep coming back.",
+  channels=[("Google Ads", "Search campaigns on 'gym near me', 'pilates studio', 'martial arts classes', and neighborhood terms."),
+            ("Facebook Ads", "Visual offers, like a free first class, shown within a tight radius of your location."),
+            ("ChatGPT Ads", "People ask ChatGPT where to work out nearby. A small test shows whether it brings sign-ups.")],
+  audit=["Trial sign-ups tracked to the ad that brought them",
+         "Radius targeting vs. how far members travel",
+         "How often ad creative is refreshed",
+         "Follow-up after a sign-up: text, call, booking link",
+         "Tracking from trial to paid membership"],
+  fit=["Gyms, yoga and pilates studios, martial arts, boxing, personal trainers",
+       "You have an intro offer or free class",
+       "You can follow up with new sign-ups the same day"],
+  faqs=[("How tight should the targeting radius be?",
+         "Usually a few miles in Chicago or New York, wider in the suburbs. We set it from where your current members live."),
+        ("Do you track who becomes a member?",
+         "Yes, if your booking or membership software can share sign-up data. Then we judge ads by members, not trials.")]),
 ]
-B2C_LIST = [
-    ("Home services", "Calls from homeowners in your service area, often the same day.",
-     "HVAC, plumbing, roofing, remodeling, landscaping, pest control"),
-    ("Legal", "Consultation requests for practice areas with high case values.",
-     "Personal injury, family law, criminal defense, immigration, estate planning"),
-    ("Health and wellness", "Booked appointments from patients nearby.",
-     "Dental, med spas, chiropractic, physical therapy, clinics"),
-    ("Real estate and mortgage", "Buyer, seller, and refinance leads, set up within Meta's housing and credit ad rules.",
-     "Agents, brokerages, lenders, property managers"),
-    ("Automotive", "Service appointments and sales inquiries from local drivers.",
-     "Dealers, repair shops, detailing, auto glass"),
-    ("Fitness and local studios", "Trial sign-ups and first visits from people close enough to come regularly.",
-     "Gyms, yoga and pilates studios, martial arts, personal training"),
-]
+B2B_LIST = [d for d in INDUSTRY_PAGES if d["group"] == "b2b"]
+B2C_LIST = [d for d in INDUSTRY_PAGES if d["group"] == "b2c"]
+GROUP_NAME = {"b2b": "B2B", "b2c": "B2C"}
 
 
 def industry_rows(items):
     return "".join(
-        f'<div class="industry"><h3>{e(n)}</h3><div><p>{e(d)}</p><p class="examples">Includes: {e(x)}</p></div></div>'
-        for n, d, x in items
+        f'<div class="industry"><h3><a class="industry-link" href="{url(d["slug"])}">{e(d["name"])}</a></h3>'
+        f'<div><p>{e(d["blurb"])}</p><p class="examples">Includes: {e(d["examples"])}</p>'
+        f'<p class="examples"><a href="{url(d["slug"])}">{e(d["name"])} lead generation</a></p></div></div>'
+        for d in items
     )
+
+
+def industry_links(items):
+    return ('<ul class="tags tag-links">'
+            + "".join(f'<li><a href="{url(d["slug"])}">{e(d["name"])}</a></li>' for d in items) + "</ul>")
+
+
+def industry_page(d):
+    group = d["group"]
+    siblings = [x for x in INDUSTRY_PAGES if x["group"] == group and x["slug"] != d["slug"]]
+    channel_html = "".join(f"<div><h3>{e(h)}</h3><p>{e(t)}</p></div>" for h, t in d["channels"])
+    faq_html = "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in d["faqs"])
+    examples = "".join(f"<li>{e(x.strip()[:1].upper() + x.strip()[1:])}</li>" for x in d["examples"].split(","))
+    schema = service_schema(d["slug"], d["name"] + " lead generation", d["desc"])
+    schema["audience"] = {"@type": "BusinessAudience" if group == "b2b" else "Audience", "audienceType": d["name"]}
+    return page(
+        d["slug"], d["title"], d["desc"],
+        f"""<section class="page-hero">
+  <div class="wrap">
+    {crumbs(("industries", "Industries"), (group, GROUP_NAME[group]), (d["slug"], d["name"]))}
+    <h1>{e(d["h1"])}</h1>
+    <p class="lead">{e(d["intro"])}</p>
+    <ul class="tags" aria-label="Includes">{examples}</ul>
+    <div class="actions"><a class="btn" href="/free-audit">Get a free account audit</a></div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><h2>How we bring in leads</h2></div>
+    <div class="cols">{channel_html}</div>
+  </div>
+</section>
+<section class="section tint">
+  <div class="wrap split">
+    <div><h2>What the audit checks</h2>{checks([e(x) for x in d["audit"]])}</div>
+    <div><h2>A good fit if</h2>{checks([e(x) for x in d["fit"]])}</div>
+  </div>
+</section>
+<section class="section faq">
+  <div class="wrap measure">
+    <h2>Common questions</h2>
+    {faq_html}
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <h2>Related industries</h2>
+    {industry_links(siblings)}
+    <p style="margin-top:1.25rem"><a class="more" href="{url(group)}">All {GROUP_NAME[group]} industries</a> &nbsp; <a class="more" href="/industries">All industries</a></p>
+  </div>
+</section>
+{cta_band()}""",
+        schemas=[schema], current=d["slug"],
+    )
+
+
+for _d in INDUSTRY_PAGES:
+    PAGES[_d["slug"] + ".html"] = industry_page(_d)
 
 
 PAGES["industries.html"] = page(
@@ -583,16 +865,28 @@ PAGES["industries.html"] = page(
       <h2>B2B companies</h2>
       <p>Longer sales cycles, several decision makers, and leads that need qualifying. We focus on lead quality and
       send closed deals back to the ad platforms.</p>
-      <ul class="tags">{"".join(f"<li>{e(n)}</li>" for n, _, _ in B2B_LIST)}</ul>
+      {industry_links(B2B_LIST)}
       <p style="margin-top:1.25rem"><a class="more" href="/b2b">B2B lead generation</a></p>
     </div>
     <div>
       <h2>B2C companies</h2>
       <p>Fast decisions, local searches, and phones that need to ring. We focus on calls, booked appointments,
       and response speed.</p>
-      <ul class="tags">{"".join(f"<li>{e(n)}</li>" for n, _, _ in B2C_LIST)}</ul>
+      {industry_links(B2C_LIST)}
       <p style="margin-top:1.25rem"><a class="more" href="/b2c">B2C lead generation</a></p>
     </div>
+  </div>
+</section>
+<section class="section tint">
+  <div class="wrap">
+    <div class="section-head"><h2>B2B industries</h2></div>
+    {industry_rows(B2B_LIST)}
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><h2>B2C industries</h2></div>
+    {industry_rows(B2C_LIST)}
   </div>
 </section>
 {cta_band()}""",

@@ -266,3 +266,11 @@ main { display: block; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Industry links */
+.tag-links li { padding: 0; }
+.tag-links a { display: block; padding: 0.4rem 0.85rem; color: var(--ink); text-decoration: none; border-radius: 999px; }
+.tag-links a:hover { background: var(--mist); color: var(--ink); text-decoration: underline; }
+.industry h3 a.industry-link { color: var(--ink); text-decoration: none; }
+.industry h3 a.industry-link:hover { text-decoration: underline; }
+.page-hero .tags { margin-top: 1.25rem; }
