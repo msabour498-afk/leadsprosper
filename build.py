@@ -28,10 +28,10 @@ SITE = {
     "ga4_id": None,
     # Forms. provider: "hubspot", "formspree", or None (opens the visitor's email app).
     "form": {
-        "provider": None,
-        "hubspotPortalId": "",
-        "hubspotFormId": "",
-        "hubspotRegion": "na1",   # "na1" or "eu1"
+        "provider": "hubspot",
+        "hubspotPortalId": "247730807",
+        "hubspotFormId": "09784c96-ee3b-4b4e-98f8-384163513f64",
+        "hubspotRegion": "na2",   # na1/na2 use api.hsforms.com; eu1 uses api-eu1
         "formspreeEndpoint": "",  # e.g. "https://formspree.io/f/xxxxxxx"
     },
     "year": 2026,
