@@ -69,17 +69,17 @@
       <label class="choice"><input type="checkbox" name="accounts" value="Google Ads"> Google Ads</label>
       <label class="choice"><input type="checkbox" name="accounts" value="Facebook/Instagram Ads"> Facebook / Instagram</label>
       <label class="choice"><input type="checkbox" name="accounts" value="ChatGPT Ads"> ChatGPT Ads</label>
-      <label class="choice"><input type="checkbox" name="accounts" value="Not running ads yet"> Not running ads yet</label>
     </div></fieldset>
     <p class="error" id="e-accounts">Pick at least one.</p></div>
-  <div class="field"><label for="f-spend">Monthly ad spend <span class="opt">(optional)</span></label>
+  <div class="field" data-required="spend"><label for="f-spend">Monthly ad spend</label>
     <span hidden data-extra="Monthly ad spend" data-name="spend"></span>
-    <select id="f-spend" name="spend">
+    <select id="f-spend" name="spend" aria-describedby="e-spend">
       <option value="">Choose one</option>
       <option>$30,000 to $50,000</option>
       <option>$50,000 to $100,000</option>
       <option>More than $100,000</option>
-    </select></div>
+    </select>
+    <p class="error" id="e-spend">Choose your monthly ad spend.</p></div>
   <div class="field"><fieldset><legend>Who are your customers? <span class="opt">(optional)</span></legend>
     <span hidden data-extra="Customers" data-name="customers"></span>
     <div class="choices">
@@ -97,9 +97,6 @@
     <div class="aside">
       <h2>What you get</h2>
       <ul class="checks"><li>A review of tracking: are leads counted correctly?</li><li>Where spend goes versus where leads come from</li><li>Wasted spend: search terms, audiences, and locations</li><li>Landing page notes</li><li>A short, prioritized list of fixes</li></ul>
-      <h2 style="margin-top:2rem">Not running ads yet?</h2>
-      <p>Pick "Not running ads yet" and tell us what you sell and where. We'll suggest which channel to start with
-      and a sensible test budget.</p>
       <p>Prefer email? Write to <a href="mailto:support@leadsprosper.com">support@leadsprosper.com</a>.</p>
     </div>
   </div>
